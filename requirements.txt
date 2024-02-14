@@ -2,3 +2,6 @@ django
 
 # For work with postgresql
 psycopg2
+
+# For debug
+ipdb

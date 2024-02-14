@@ -4,6 +4,31 @@
 
 {% block content %}
     <div class="text-light">
-        Categories table
+        <h2>Categories table</h2>
+
+        <table class="table table-dark table-striped text-nowrap">
+            <thead class="thead-dark">
+                <tr>
+                {% comment %} TODO: Add dinamic way {% endcomment %}
+                    <th scope="col">category_id</th>
+                    <th scope="col">category_name</th>
+                    <th scope="col">description</th>
+                    <th scope="col">picture</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for category in categories %}
+                <tr>
+                    <td>{{ category.category_id }}</td>
+                    <td>{{ category.category_name }}</td>
+                    <td>{{ category.description }}</td>
+                    <td>
+                        <img src="{{category.picture.url}}" class="img-fluid">
+                        {{category.picture.dict}}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 {% endblock content %}
