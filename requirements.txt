@@ -5,3 +5,6 @@ psycopg2
 
 # For debug
 ipdb
+
+# For work with images
+pillow
