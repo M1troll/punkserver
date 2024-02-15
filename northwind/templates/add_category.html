@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Create category{% endblock title %}
+
+{% block table_header %}New category{% endblock table_header %}
+
+{% block content %}
+
+    <div class="text-light">
+        <form method="post">{% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Save">
+        </form>
+    </div>
+
+{% endblock content %}

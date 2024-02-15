@@ -3,10 +3,12 @@
 
 {% block title %}Categories{% endblock title %}
 
+{% block table_header %}Categories table{% endblock table_header %}
+
+{% block search %}{% include "search.html" %}{% endblock search %}
+
 {% block content %}
     <div class="text-light">
-        <h2>Categories table</h2>
-
         <table class="table table-dark table-striped text-nowrap">
             <thead class="thead-dark">
                 <tr>
@@ -18,7 +20,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for category in categories %}
+                {% for category in object_list %}
                 <tr>
                     <td>{{ category.category_id }}</td>
                     <td>{{ category.category_name }}</td>

@@ -1,12 +1,22 @@
-from django.shortcuts import render
+from django.views.generic import ListView
+from django.views.generic.edit import CreateView
 from . import models
 
 
-def orders(request):
-    orders = models.Orders.objects.all()
-    return render(request, 'orders.html', {'orders': orders})
+class OrdersListView(ListView):
+    """Render table of orders."""
+    model = models.Orders
+    template_name = "orders.html"
 
 
-def categories(request):
-    categories = models.Categories.objects.all()
-    return render(request, 'categories.html', {'categories': categories})
+class CategoriesListView(ListView):
+    """Render table of categories."""
+    model = models.Categories
+    template_name = "categories.html"
+
+
+class AddCategoryView(CreateView):
+    model = models.Categories
+    template_name = "add_category.html"
+    fields = ["category_name", "description"]
+    # , "picture"]
