@@ -1,6 +1,7 @@
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView
 from . import models
+from django.urls import reverse_lazy
 
 
 class OrdersListView(ListView):
@@ -19,4 +20,5 @@ class AddCategoryView(CreateView):
     model = models.Categories
     template_name = "add_category.html"
     fields = ["category_name", "description"]
-    # , "picture"]
+
+    success_url = reverse_lazy("categories")

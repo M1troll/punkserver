@@ -78,7 +78,7 @@ class AuthUserUserPermissions(models.Model):
 
 
 class Categories(models.Model):
-    category_id = models.SmallIntegerField(primary_key=True)
+    category_id = models.AutoField(primary_key=True)
     category_name = models.CharField(max_length=15)
     description = models.TextField(blank=True, null=True)
     picture = models.BinaryField(blank=True, null=True)
