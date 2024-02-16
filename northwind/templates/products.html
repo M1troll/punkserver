@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Products{% endblock title %}
+
+{% block table_header %}Products table{% endblock table_header %}
+
+{% block search %}{% include "search.html" %}{% endblock search %}
+
+{% block content %}
+    <section class="pb-4">
+        <div class="text-light table-responsive text-nowrap table-wrappe">
+            <table class="table table-dark table-striped text-nowrap">
+                <thead class="thead-dark">
+                    <tr>
+                    {% comment %} TODO: Add dinamic way {% endcomment %}
+                        <th scope="col">product_id</th>
+                        <th scope="col">product_name</th>
+                        <th scope="col">supplier_id</th>
+                        <th scope="col">category_id</th>
+                        <th scope="col">quantity_per_unit</th>
+                        <th scope="col">unit_price</th>
+                        <th scope="col">units_in_stock</th>
+                        <th scope="col">units_on_order</th>
+                        <th scope="col">reorder_level</th>
+                        <th scope="col">discontinued</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in object_list %}
+                    <tr>
+                        <td>{{ product.product_id }}</td>
+                        <td>{{ product.product_name }}</td>
+                        <td>{{ product.supplier_id }}</td>
+                        <td>{{ product.category_id }}</td>
+                        <td>{{ product.quantity_per_unit }}</td>
+                        <td>{{ product.unit_price }}</td>
+                        <td>{{ product.units_in_stock }}</td>
+                        <td>{{ product.units_on_order }}</td>
+                        <td>{{ product.reorder_level }}</td>
+                        <td>{{ product.discontinued }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endblock content %}

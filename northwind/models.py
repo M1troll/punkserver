@@ -88,6 +88,9 @@ class Categories(models.Model):
         db_table = 'categories'
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
+    
+    def __str__(self) -> str:
+        return f"{self.category_name} ({self.category_id})"
 
 
 class CustomerCustomerDemo(models.Model):
@@ -293,6 +296,9 @@ class Products(models.Model):
         managed = False
         db_table = 'products'
 
+    def __str__(self) -> str:
+        return f"{self.product_name} ({self.product_id})"
+
 
 class Region(models.Model):
     region_id = models.SmallIntegerField(primary_key=True)
@@ -330,6 +336,9 @@ class Suppliers(models.Model):
     class Meta:
         managed = False
         db_table = 'suppliers'
+    
+    def __str__(self) -> str:
+        return f"{self.company_name} ({self.supplier_id})"
 
 
 class Territories(models.Model):
