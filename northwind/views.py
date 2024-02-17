@@ -1,5 +1,4 @@
-from django.views.generic import ListView
-from django.views.generic.edit import CreateView
+from django.views.generic import ListView, CreateView, DeleteView
 from . import models
 from django.urls import reverse_lazy
 from django.db.models import Q 
@@ -77,5 +76,11 @@ class AddProductView(CreateView):
         "reorder_level",
         "discontinued",
     ]
+ 
+    success_url = reverse_lazy("products")
 
+
+class DeleteProductView(DeleteView):
+    model = models.Products
+    template_name = "delete_category.html"
     success_url = reverse_lazy("products")

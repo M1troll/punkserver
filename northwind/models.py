@@ -281,7 +281,7 @@ class ProductAudit(models.Model):
 
 
 class Products(models.Model):
-    product_id = models.SmallIntegerField(primary_key=True)
+    product_id = models.AutoField(primary_key=True)
     product_name = models.CharField(max_length=40)
     supplier = models.ForeignKey('Suppliers', models.DO_NOTHING, blank=True, null=True)
     category = models.ForeignKey(Categories, models.DO_NOTHING, blank=True, null=True)

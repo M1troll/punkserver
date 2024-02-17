@@ -13,6 +13,7 @@
                 <thead class="thead-dark">
                     <tr>
                     {% comment %} TODO: Add dinamic way {% endcomment %}
+                        <th scope="col"></th>
                         <th scope="col">product_id</th>
                         <th scope="col">product_name</th>
                         <th scope="col">supplier_id</th>
@@ -28,6 +29,13 @@
                 <tbody>
                     {% for product in object_list %}
                     <tr>
+                        <td>
+                            <a class="btn btn-danger" href="{% url 'delete_product' pk=product.product_id %}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-patch-minus-fill" viewBox="0 0 16 16">
+                                    <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01zM6 7.5h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1 0-1"/>
+                                </svg>
+                            </a>
+                        </td>
                         <td>{{ product.product_id }}</td>
                         <td>{{ product.product_name }}</td>
                         <td>{{ product.supplier_id }}</td>
