@@ -17,16 +17,49 @@ class ProductsListView(ListView):
 
     def get_queryset(self):
         query = self.request.GET.get("search")
+        units = self.request.GET.get("units_in_stock")
+        condition = self.request.GET.get("condition", "")
 
-        if not query:
-            return super().get_queryset()
+        if query and not units:
+            return models.Products.objects.filter(self._get_search_conditions(query))
 
-        object_list = models.Products.objects.filter(
-            Q(category__category_id=query)
-            | Q(product_name__contains=query)
-            | Q(units_in_stock=query)
-        )
-        return object_list
+        if units and not query:
+            conditions = Q(units_in_stock=units)
+            if condition:
+                conditions = self._get_units_conditions(condition, units)
+            return models.Products.objects.filter(conditions)
+       
+        if query and units:
+            conditions = self._get_search_conditions(query) | Q(units_in_stock=units)
+            return models.Products.objects.filter(conditions)
+       
+        if query and units:
+            return models.Products.objects.filter(
+                self._get_search_conditions(query)
+                | self._get_units_conditions(condition, units)
+            )
+        
+        return super().get_queryset()
+
+    def _get_search_conditions(self, query: str | int) -> Q:
+        conditions = Q(product_name__contains=query)
+        try:
+            category_id = int(query)
+            conditions = conditions | Q(category__category_id=category_id)
+        except:
+            pass
+        return conditions
+    
+    def _get_units_conditions(self, condition: str, units: str) -> Q:
+        if condition == ">":
+            conditions = Q(units_in_stock__gte=units)
+        elif condition == "<":
+            conditions = Q(units_in_stock__lt=units)
+        else: 
+            conditions = Q(units_in_stock=units)
+        return conditions
+
+
 
 
 class CategoriesListView(ListView):

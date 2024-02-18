@@ -235,7 +235,7 @@ class NorthwindOrder(models.Model):
 
 class OrderDetails(models.Model):
     order = models.OneToOneField('Orders', models.DO_NOTHING, primary_key=True)  # The composite primary key (order_id, product_id) found, that is not supported. The first column is selected.
-    product = models.ForeignKey('Products', models.DO_NOTHING)
+    product = models.ForeignKey('Products', models.CASCADE)
     unit_price = models.FloatField()
     quantity = models.SmallIntegerField()
     discount = models.FloatField()
